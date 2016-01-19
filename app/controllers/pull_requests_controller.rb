@@ -9,5 +9,6 @@ class PullRequestsController < ApplicationController
       Rails.logger.debug checker
       checker.run
     end
+    render json: {}, status: 200
   end
 end
