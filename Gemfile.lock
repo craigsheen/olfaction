@@ -110,7 +110,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     key-vault (0.0.1)
-    le (2.6.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -229,7 +228,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   key-vault
-  le
   pg
   rails (= 4.2.4)
   reek
