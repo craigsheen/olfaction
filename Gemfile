@@ -17,6 +17,7 @@ gem 'key-vault', require: 'key_vault'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rspec-rails'
 end
 
 group :development do

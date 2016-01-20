@@ -31,7 +31,6 @@ class CheckPullRequest
   private
   attr_writer :files, :reek_output
 
-
   def build_directory_for_temp_files
     `mkdir -p #{directory_path}`
   end
