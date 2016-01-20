@@ -19,3 +19,8 @@ Automatically detect code smells in your pull requests.
 ### Thanks
 
 Obviously this heavily relies on [reek](https://github.com/troessner/reek)
+
+### TODO
+
+* If there is another push, delete the previous comments or it will just repeat.
+* Integrate more than `reek`?
