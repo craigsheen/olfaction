@@ -21,11 +21,11 @@ class CheckPullRequest
   end
 
   def files_url
-    "https://api.github.com/repos/craigsheen/#{repo}/pulls/#{id}/files"
+    "https://api.github.com/repos/#{repo}/pulls/#{id}/files"
   end
 
   def comments_url
-    "https://api.github.com/repos/craigsheen/#{repo}/pulls/#{id}/comments?access_token=#{KeyVault[:access_token]}"
+    "https://api.github.com/repos/#{repo}/pulls/#{id}/comments?access_token=#{KeyVault[:access_token]}"
   end
 
   private
