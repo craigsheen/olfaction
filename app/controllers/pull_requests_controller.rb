@@ -2,7 +2,7 @@ class PullRequestsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    if params["action"] == "created"
+    if params["action"] == "opened"
       repo = params["repository"]["full_name"]
       id = params["number"]
       checker = CheckPullRequest.new(repo, id)
