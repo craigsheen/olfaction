@@ -16,7 +16,6 @@ class PullRequestFile
   def post_file_output_to_github
     args = { body: comment_body, commit_id: sha, path: path, position: 1 }
     url = check_pull_request.comments_url
-    debugger
     HTTP.post(url, :json => args)
   end
 
