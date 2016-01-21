@@ -37,7 +37,7 @@ describe PullRequestFile do
   let(:file) { PullRequestFile.new(file_hash, checker) }
 
   before do
-    PullRequestFile.any_instance.instance_eval("@contents_hash = #{contents_hash}")
+    PullRequestFile.any_instance.should_receive(:contents_hash).at_least(1).and_return(contents_hash)
   end
 
   describe 'attributes set on initialize' do
@@ -46,8 +46,6 @@ describe PullRequestFile do
     specify { expect(file.file_name).to eq contents_hash['name'] }
     specify { expect(file.raw_url).to eq contents_hash['download_url'] }
   end
-
-  # TODO: Test tempfile creation
 
   describe '.run_reek' do
     it 'should set reek ouput' do
