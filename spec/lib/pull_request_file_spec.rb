@@ -37,7 +37,7 @@ describe PullRequestFile do
   let(:file) { PullRequestFile.new(file_hash, checker) }
 
   before do
-    file.instance_eval("@contents_hash = #{contents_hash}")
+    PullRequestFile.any_instance.instance_eval("@contents_hash = #{contents_hash}")
   end
 
   describe 'attributes set on initialize' do

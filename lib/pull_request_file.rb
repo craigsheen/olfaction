@@ -23,12 +23,16 @@ class PullRequestFile
   attr_writer :sha, :file_name, :raw_url, :contents, :tempfile
 
   def init_file
-    @contents_hash = JSON.parse(HTTP.get(file_hash['contents_url']).to_s)
+    @contents_hash = get_pull_request_file_contents_hash
     @path = file_hash['filename']
     @sha = contents_hash['url'].split("?ref=")[1] # This is awful but it seems the sha field is not the sha of the commit.
     @file_name = contents_hash['name']
     @raw_url = contents_hash['download_url']
     @contents = get_raw_content
+  end
+
+  def get_pull_request_file_contents_hash
+    JSON.parse(HTTP.get(file_hash['contents_url']).to_s)
   end
 
   def get_raw_content
@@ -47,6 +51,6 @@ class PullRequestFile
     reek_output.each do |issue|
       comment_body_text << "[#{issue['smell_type']}](#{issue['wiki_link']}): #{issue['message']}\nLines: #{issue['lines']}"
     end
-    comment_body_text.join("\n\n")
+    comment_body_text.join("\n").prepend("## Reek Code Smells Found\n")
   end
 end

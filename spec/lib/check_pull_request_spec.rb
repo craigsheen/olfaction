@@ -14,7 +14,21 @@ describe CheckPullRequest do
   end
 
   describe '.comments_url' do
-    specify { expect(checker.comments_url).to eq "https://api.github.com/repos/#{repo}/pulls/#{number}/comments?access_token=#{KeyVault[:access_token]}" }
+    context 'with no arguements passed' do
+      specify { expect(checker.comments_url).to eq "https://api.github.com/repos/#{repo}/pulls/#{number}/comments?access_token=#{KeyVault[:access_token]}" }
+    end
+
+    context 'with access_token set to false' do
+      specify { expect(checker.comments_url(access_token: false)).to eq "https://api.github.com/repos/#{repo}/pulls/#{number}/comments" }
+    end
+
+    context 'with access_token set to true' do
+      specify { expect(checker.comments_url(access_token: true)).to eq "https://api.github.com/repos/#{repo}/pulls/#{number}/comments?access_token=#{KeyVault[:access_token]}" }
+    end
+
+    context 'with id set to 2' do
+      specify { expect(checker.comments_url(comment_id: 2)).to eq "https://api.github.com/repos/#{repo}/pulls/#{number}/comments/2?access_token=#{KeyVault[:access_token]}" }
+    end
   end
 
   describe '.run' do
@@ -33,6 +47,7 @@ describe CheckPullRequest do
     before do
       expect(HTTP).to receive(:get).with("https://api.github.com/repos/#{repo}/pulls/#{number}/files").and_return(JSON.dump([file_hash]))
       expect(PullRequestFile).to receive(:new).with(file_hash, checker).and_return nil
+      checker.stub(:delete_previously_generated_comments)
       checker.stub(:send_results_to_github)
       checker.stub(:run_reek)
     end
