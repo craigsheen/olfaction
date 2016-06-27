@@ -16,18 +16,27 @@ class CheckPullRequest
     run_reek
     send_results_to_github
     clean_up
+    create_stored_pull_request
   end
 
   def directory_path
     "#{Rails.root}/tmp/#{repo}/#{id}"
   end
 
+  def pull_request_url
+    "https://github.com/#{repo}/pull/#{id}"
+  end
+
+  def pull_request_api_url
+    "https://api.github.com/repos/#{repo}/pulls/#{id}"
+  end
+
   def files_url
-    "https://api.github.com/repos/#{repo}/pulls/#{id}/files"
+    "#{pull_request_api_url}/files"
   end
 
   def comments_url(access_token: true, comment_id: nil)
-    comment_url = "https://api.github.com/repos/#{repo}/pulls/#{id}/comments"
+    comment_url = "#{pull_request_api_url}/comments"
     comment_url += "/#{comment_id}" unless comment_id.blank?
     comment_url += access_token_as_param if access_token
     comment_url
@@ -78,5 +87,13 @@ class CheckPullRequest
 
   def clean_up
     `rm -rf #{directory_path}`
+  end
+
+  def create_stored_pull_request
+    PullRequest.create(url: pull_request_url, reek_smells: reek_smells_count)
+  end
+
+  def reek_smells_count
+    @files.sum(&:reek_smells_count)
   end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :pull_requests, only: [:create]
+  resources :pull_requests, only: [:create, :index]
 
-  root 'pages#index'
+  root 'pull_requests#index'
 end
