@@ -19,7 +19,7 @@ class CheckPullRequest
   end
 
   def directory_path
-    "#{Rails.root.to_s}/tmp/#{repo}/#{id}"
+    "#{Rails.root}/tmp/#{repo}/#{id}"
   end
 
   def files_url
@@ -38,6 +38,7 @@ class CheckPullRequest
   end
 
   private
+
   attr_writer :files, :current_comments
 
   def build_directory_for_temp_files
@@ -68,15 +69,11 @@ class CheckPullRequest
   end
 
   def run_reek
-    @files.each do |file|
-      file.run_reek
-    end
+    @files.each(&:run_reek)
   end
 
   def send_results_to_github
-    @files.each do |file|
-      file.post_file_output_to_github
-    end
+    @files.each(&:post_file_output_to_github)
   end
 
   def clean_up

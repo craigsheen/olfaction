@@ -16,16 +16,17 @@ class PullRequestFile
   def post_file_output_to_github
     args = { body: comment_body, commit_id: sha, path: path, position: 1 }
     url = check_pull_request.comments_url
-    HTTP.post(url, :json => args)
+    HTTP.post(url, json: args)
   end
 
   private
+
   attr_writer :sha, :file_name, :raw_url, :contents, :tempfile
 
   def init_file
     @contents_hash = get_pull_request_file_contents_hash
     @path = file_hash['filename']
-    @sha = contents_hash['url'].split("?ref=")[1] # This is awful but it seems the sha field is not the sha of the commit.
+    @sha = contents_hash['url'].split('?ref=')[1] # This is awful but it seems the sha field is not the sha of the commit.
     @file_name = contents_hash['name']
     @raw_url = contents_hash['download_url']
     @contents = get_raw_content
