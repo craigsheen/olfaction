@@ -81,6 +81,7 @@ describe CheckPullRequest do
       checker.stub(:delete_previously_generated_comments)
       checker.stub(:send_results_to_github)
       checker.stub(:run_reek)
+      checker.stub(:reek_smells_count)
     end
 
     it 'should have cleaned up the files' do

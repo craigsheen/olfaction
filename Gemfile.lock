@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:redbubble/key-vault.git
+  revision: 51288fcf3bad0c7da0e162b49607c449ff09674b
+  specs:
+    key-vault (0.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,7 +115,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
-    key-vault (0.0.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -244,7 +249,7 @@ DEPENDENCIES
   http
   jbuilder (~> 2.0)
   jquery-rails
-  key-vault
+  key-vault!
   pg
   rails (= 4.2.4)
   reek
