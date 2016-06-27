@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:redbubble/key-vault.git
+  remote: https://github.com/redbubble/key-vault.git
   revision: 51288fcf3bad0c7da0e162b49607c449ff09674b
   specs:
     key-vault (0.0.2)

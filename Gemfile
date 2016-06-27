@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'reek'
 gem 'http'
-gem 'key-vault', require: 'key_vault', git: 'git@github.com:redbubble/key-vault.git'
+gem 'key-vault', require: 'key_vault', git: 'https://github.com/redbubble/key-vault.git'
 
 group :development, :test do
   gem 'byebug'
