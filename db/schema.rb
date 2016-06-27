@@ -15,14 +15,5 @@ ActiveRecord::Schema.define(version: 0) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
-  enable_extension "postgis_topology"
-
-  create_table "spatial_ref_sys", primary_key: "srid", force: :cascade do |t|
-    t.string  "auth_name", limit: 256
-    t.integer "auth_srid"
-    t.string  "srtext",    limit: 2048
-    t.string  "proj4text", limit: 2048
-  end
 
 end

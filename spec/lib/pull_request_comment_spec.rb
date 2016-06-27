@@ -2,7 +2,10 @@ require 'rails_helper'
 
 describe PullRequestComment do
   let(:comment_hash) do
-    { 'id' => id, 'url' => url, 'body' => body, 'user' => { 'login' => user_login } }
+    {
+      'id' => id, 'url' => url, 'body' => body,
+      'user' => { 'login' => user_login }
+    }
   end
   let(:id) { 1 }
   let(:url) { 'http://example.com/comment/1' }

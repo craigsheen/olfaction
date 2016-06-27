@@ -5,7 +5,7 @@ class PullRequestsController < ApplicationController
     repo = params["repository"]["full_name"]
     id = params["number"]
     checker = CheckPullRequest.new(repo, id)
-    checker.run
+    checker.execute
     render json: {}, status: 200
   end
 end

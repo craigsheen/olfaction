@@ -9,7 +9,7 @@ class CheckPullRequest
     @pull_request_comments = []
   end
 
-  def run
+  def execute
     build_directory_for_temp_files
     fetch_files_from_github
     delete_previously_generated_comments
