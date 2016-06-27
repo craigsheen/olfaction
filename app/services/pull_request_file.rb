@@ -1,6 +1,7 @@
 class PullRequestFile
   attr_reader :file_hash, :contents_hash, :sha, :path, :file_name, :raw_url,
-              :check_pull_request, :contents, :tempfile, :reek_output
+              :check_pull_request, :contents, :tempfile, :reek_output,
+              :reek_smells_count
 
   def initialize(file_hash, check_pull_request)
     @file_hash = file_hash
@@ -11,6 +12,7 @@ class PullRequestFile
 
   def run_reek
     @reek_output = JSON.parse(`reek #{tempfile.path} --format json`)
+    @reek_smells_count = reek_output.count
   end
 
   def post_file_output_to_github

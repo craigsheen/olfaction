@@ -1,0 +1,14 @@
+%h1 Olfaction
+
+- if @pull_requests.empty?
+  %p No pull requests have been checked yet.
+- else
+  %table
+    %tr
+      %th URL
+      %th Reek Smells
+    %tbody
+      - @pull_requests.each do |pull_request|
+        %tr
+          %td= link_to pull_request.url, pull_request.url
+          %td= pull_request.reek_smells

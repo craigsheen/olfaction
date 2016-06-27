@@ -79,7 +79,8 @@ describe PullRequestFile do
 
   describe '.run_reek' do
     it 'should set reek ouput' do
-      expect(file).to receive(:reek_output).and_return expected_reek_output
+      expect(file).to receive(:reek_output).at_least(:once)
+        .and_return expected_reek_output
       file.run_reek
       expect(file.reek_output).to eq expected_reek_output
     end
