@@ -14,7 +14,7 @@ Automatically detect code smells in your pull requests.
 
 5. Set a [webhook](https://developer.github.com/webhooks/) on which ever repo(s) you want to detect code smells on. You will need to select `Let me select individual events.` and then `Pull Request` from the options. Set the Payload URL to be `<MY_URL>/pull_requests`.
 
-6. When a new pull request is created, GitHub will send the details to your forked application, the application will then run reek on the changed files and comment directly on your pull request with any code smells. [See example here](https://github.com/craigsheen/test-repo/pull/5)
+6. When a new pull request is created, GitHub will send the details to your forked application, the application will then run reek on the changed files and comment directly on your pull request with any code smells. [See example here](https://github.com/craigsheen/olfaction_test_repo/pull/12)
 
 ### Thanks
 
@@ -22,4 +22,5 @@ Obviously this heavily relies on [reek](https://github.com/troessner/reek)
 
 ### TODO
 
-* Integrate more than `reek`?
+* Improve the PR list style and add more information like the timestamp and smells.
+* Integrate more than `reek`? ([rubocop](https://github.com/bbatsov/rubocop) seems like a sensible next step)
